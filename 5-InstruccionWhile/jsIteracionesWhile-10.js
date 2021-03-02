@@ -12,18 +12,116 @@ hasta que el usuario quiera, mostrar:
 9-Diferencia entre positivos y negativos, (positvos-negativos). */
 function mostrar()
 {
-	//declarar contadores y variables 
-	var respuesta;
-	var numeroIngresado;
-	var sumaNegativos=0;
+	var numero;
+	var iteracion;
+	var seguir;
+	var contadorPositivos
+	var contadorNegativos
+	var contadorCeros;
+	var contadorPares;
+	var acumuladorPositivos;
+	var acumuladorNegativos;
+	var promedioPositivos;
+	var promedioNegativos;
+	var diferencia;
 
-	respuesta="si";
+	//Planteo variables
 
-	while(respuesta=="si")
+	numero=0;
+	iteracion=0;
+	
+	contadorPositivos=0;
+	contadorNegativos=0;
+
+	contadorCeros=0;
+
+	contadorPares=0;
+
+	promedioPositivos=0;
+	promedioNegativos=0;
+
+	acumuladorNegativos=0;
+	acumuladorPositivos=0;
+
+	//Planteo iteracion repetitiva
+
+	do
 	{
-		
-		respuesta=prompt("desea continuar?");
-	}//fin del while
+		iteracion++;
+		numero=prompt("Ingrese un numero: "+iteracion);
 
-	document.write("la suma de negativos es :"+sumaNegativos);
-}//FIN DE LA FUNCIÓN
+		while(isNaN(numero)/*==true*/)
+		{
+			numero=prompt("Error. No ingrese una palabra, ingrese un numero: "+iteracion);
+			numero=parseInt(numero);			
+		}				
+
+		if(numero < 0 )
+		{
+			acumuladorNegativos=acumuladorNegativos + numero;
+			contadorNegativos++;			
+		}
+		else
+		{
+			if ( numero == 0) 
+			{
+				contadorCeros++;				
+			}
+			else
+			{
+				acumuladorPositivos=acumuladorPositivos + numero;
+				contadorPositivos++;				
+			}
+			if (numero % 2 == 0)
+			{
+				contadorPares++;
+			}
+		}
+
+		seguir = prompt("Quiere ingresar otro numero? ");
+
+	}while (seguir =="Si") // Siempre que se responda "Si", vuelve a preguntar
+
+	//IFs para dar resultados:
+
+	if (contadorPositivos > 0)
+	{
+		promedioPositivos = acumuladorPositivos/contadorPositivos;		
+	}
+	else
+	{
+		promedioPositivos = 0;
+	}
+
+
+	if (contadorNegativos > 0 )
+	{
+		promedioNegativos = acumuladorNegativos/contadorNegativos;
+	}
+	else
+	{
+		promedioNegativos = 0;
+	}
+	
+	 // Resultados
+
+	diferencia= contadorPositivos - contadorNegativos;
+
+	console.log("Suma de los negativos:" + acumuladorNegativos);
+	console.log("Suma de los positivos:" + acumuladorPositivos);
+	console.log("Cantidad de negativos: " + contadorNegativos);
+	console.log("Cantidad de positivos: " + contadorPositivos);
+	console.log("Cantidad de ceros: " + contadorCeros);
+	console.log("Cantidad de numeros pares: " + contadorPares);
+	console.log("Promedio de positivos: " + promedioPositivos);
+	console.log("Promedio negativos: " + promedioNegativos);
+	console.log("Diferencia entre positivos y negativos: " + diferencia);
+	//document.write("");
+}
+// > <
+
+/*
+{
+	document.write("<br>")
+}
+*/
